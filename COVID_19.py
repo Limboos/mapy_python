@@ -36,12 +36,12 @@ folium.Choropleth(geo_data=woj_geoPath,  # GeJSON z danymi geograficznymi obszar
                   legend_name="Ilosc zakazonych w wojewodztwie",
                   bins=bins,
                   reset=True).add_to(mapa)
+
 for gj in map(lambda gj: folium.GeoJson(gj), woj_geojson):
     props = gj.data['features'][0]['properties']
-    #print(map(lambda  x:  x for x in props : '' if x=="{" or x =="\'" )))
-
     gj.add_child(folium.Popup(str(props)))
     gj.add_to(mapa)
+
 
 # zapisanie utworzonej mapy do pliku HTML
 mapa.save(outfile='zar_woj.html')
